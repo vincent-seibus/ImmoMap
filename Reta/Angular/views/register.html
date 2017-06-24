@@ -1,0 +1,55 @@
+﻿<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+<script>
+var widgetId1;
+var onloadCallback = function() {
+    widgetId1 = grecaptcha.render('captcha', {
+        'sitekey': '6LfBhxMUAAAAAMOoXPAPlF0H1NlSNhcEj2Tab0kj',
+        'theme' : 'light'
+    });
+};
+
+var checkCaptcha = function () {
+    if (grecaptcha.getResponse(widgetId1) == '') {
+        return false;
+    }
+    return true;
+};
+</script>
+<div class="middle-box text-center loginscreen  animated fadeInDown">
+    <div>
+        <div>
+            <h1 class="logo-name"></h1>
+        </div>
+        <p ng-controller="translateCtrl">
+            <a ng-click="changeLanguage('en')"><img src="img/flags/32/United-Kingdom.png" alt="flag"></a>
+            <a ng-click="changeLanguage('fr')"><img src="img/flags/32/France.png" alt="flag"></a>
+        </p>
+        <h3>{{ 'RegisterTextTitle' | translate }}  </h3>
+        <p>
+            {{ 'RegisterTextIntroduction' | translate }}
+        </p>
+        <p></p>
+        <form class="m-t" role="form" name="registerForm" ng-submit="processFormRegister(registerForm.$valid)" novalidate>
+            <div class="form-group" ng-class="{ 'has-error' : registerForm.email.$invalid && registerForm.email.$touched}">
+                <input class="form-control" ng-model="formData.email" name="email" type="email" placeholder="{{ 'RegisterPlaceholderUsername' | translate }}" required="" autofocus>
+                <p ng-show="registerForm.email.$invalid && registerForm.email.$touched" class="help-block"> {{ 'RegisterUsernameValidationText' | translate }} </p>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : registerForm.password.$invalid && registerForm.password.$touched}">
+                <input type="password" class="form-control" ng-model="formData.password" name="password" placeholder="{{ 'RegisterPlaceholderPassword' | translate }}" required="">
+                <p ng-show="registerForm.password.$invalid && registerForm.password.$touched" class="help-block "> {{ 'RegisterPasswordValidationText' | translate }} </p>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : registerForm.confirmPassword.$invalid && registerForm.confirmPassword.$touched || registerForm.confirmPassword.$touched && formData.confirmPassword != formData.password }">
+                <input type="password" class="form-control" ng-model="formData.confirmPassword" ng-change="passwordMatch()" name="confirmPassword" placeholder="{{ 'RegisterPlaceholderConfirmPassword' | translate }}" required="">
+                <p ng-show="registerForm.confirmPassword.$invalid && registerForm.confirmPassword.$touched" class="help-block"> {{ 'RegisterConfirmPasswordValidationText' | translate }} </p>
+                <p ng-show="registerForm.confirmPassword.$touched && formData.confirmPassword != formData.password" class="help-block"> {{ 'RegisterConfirmPasswordNoMatchValidationText' | translate }} </p>
+            </div>
+            <div class="form-group" >
+                <div id="captcha" ng-show="captchaShow"></div>
+            </div>
+            <button type="submit" ng-disabled="!registerForm.$valid || loadingForm" class="btn btn-primary block full-width m-b">{{ 'RegisterButtonRegister' | translate }} <i class="vertical-align glyphicon glyphicon-circle-arrow-right"></i><img ng-show="loadingForm" width="20px" src="/Angular/img/squares.gif" /></button>
+            <p class="text-muted text-center"><small>{{ 'RegisterTextAlreadyLogin' | translate }}</small></p>
+        </form>
+        <a class="btn btn-sm btn-white btn-block" ng-click="backToLogin()"> {{ 'RegisterTextBackToLogin' | translate }} </a>
+       <!-- <p class="m-t"> <small>bzhcoin &copy; 2014</small> </p>-->
+    </div>
+</div>

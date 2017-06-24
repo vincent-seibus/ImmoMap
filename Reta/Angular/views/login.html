@@ -1,0 +1,52 @@
+<div class="middle-box text-center loginscreen  animated fadeInDown">
+    <div>
+        <div>
+            <h1 class="logo-name"></h1>
+        </div>
+        <p ng-controller="translateCtrl" >
+            <a class="md-input-focused" ng-click="changeLanguage('en')"> en <!--<img src="img/flags/32/United-Kingdom.png" alt="flag">--></a> -
+            <a class="md-input-focused" ng-click="changeLanguage('fr')"> fr <!--<img src="img/flags/32/France.png" alt="flag">--></a>
+        </p>
+        <h3>{{ 'loginFormTitle' | translate }}</h3>
+        <p>{{ 'loginFormIntroduction' | translate }}
+        </p>      
+        <form class="row m-t" role="form" name="loginForm" ng-submit="processFormLogin(loginForm.$valid)" novalidate>
+            <div class="col-md-12 col-xs-12" ng-class="{ 'has-error' : loginForm.email.$invalid && loginForm.email.$touched}">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label> {{ 'loginEmailLabel' | translate }}</label>
+                    <input ng-model="userCredential.Email" name="email" type="email" required>
+                </md-input-container>
+                <p ng-show="loginForm.email.$invalid && loginForm.email.$touched" class="help-block has-error"> {{ 'loginFormValidationTextEmail' | translate }} </p>
+                <!--
+                <label class="control-label">{{ 'loginEmailLabel' | translate }}</label>
+                <input class="form-control" ng-model="userCredential.Email" name="email" type="email" placeholder="{{ 'loginInputEmailPlaceholder' | translate }}" required="">
+                <p ng-show="loginForm.email.$invalid && loginForm.email.$touched" class="loginGoogleButtonhelp-block"> {{ 'loginFormValidationTextEmail' | translate }} </p>
+                -->
+            </div> 
+            <div class="col-md-12 col-xs-12" ng-class="{ 'has-error' : loginForm.password.$invalid && loginForm.password.$touched}">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label> {{ 'loginPasswordLabel' | translate }}</label>
+                    <input ng-model="userCredential.Password" name="password" type="password" required>
+                </md-input-container>
+                <p ng-show="loginForm.Password.$invalid && loginForm.Password.$touched" class="help-block has-error"> {{ 'loginFormValidationTextPassword' | translate }} </p>
+                 <!--
+                <label class="control-label">{{ 'loginPasswordLabel' | translate }}</label>
+                <input class="form-control" ng-model="userCredential.Password" name="password" type="password" placeholder="{{ 'loginInputPasswordPlaceholder' | translate }}" required="">
+                <p ng-show="loginForm.Password.$invalid && loginForm.Password.$touched" class="help-block"> {{ 'loginFormValidationTextPassword' | translate }} </p>
+                -->
+            </div>   
+            <div class="col-md-12 col-xs-12">
+                <button type="submit" ng-disabled="!loginForm.$valid || loadingLoginForm" class="btn btn-primary block full-width m-b">{{ 'loginButtonSubmit' | translate }} <img ng-show="loadingLoginForm" width="20px" src="/Angular/img/squares.gif" /></button>
+                <a ng-show="globalConfiguration.forgotPasswordEnabled" ui-sref="forgot_password"><small>{{ 'loginForgotPasswordLink' | translate }}</small></a>
+                <p ng-show="globalConfiguration.registerEnabled" class="text-muted text-center"><small>{{ 'loginNoAccountText' | translate }}</small></p>
+                <a ng-show="globalConfiguration.registerEnabled" class="btn btn-sm btn-white btn-block" ui-sref="register">{{ 'loginCreateAccountButton' | translate }}</a>
+            </div>
+        </form>
+        <div ng-show="globalConfiguration.externalLoginEnabled">
+            <button class="btn btn-linkedin btn-block m-t m-b font-bold" ng-click="loginWithLinkedin()">{{ 'loginLinkedinButton' | translate }}</button>
+            <button class="btn btn-facebook btn-block m-t m-b font-bold" ng-click="loginWithFacebook()">{{ 'loginFacebookButton' | translate }}</button>
+            <button class="btn btn-google btn-block m-t m-b font-bold" ng-click="loginWithGoogle()">{{ 'loginGoogleButton' | translate }}</button>
+        </div> 
+        <p class="m-t"> <small></small> </p>
+    </div>
+</div>

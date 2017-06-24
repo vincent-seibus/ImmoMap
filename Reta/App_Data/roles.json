@@ -1,0 +1,26 @@
+﻿{
+  "roles": [
+    {
+      "name": "All",
+      "version": 1,
+      "returnUrl": "building.list",
+      "privileges": [
+        "ViewUsersList",
+        "ModifyUsers",
+        "ModifyUserRoles",
+        "LogAsUser",
+        "viewSpaceConfiguration"
+      ]
+    },
+    {
+      "name": "Agent",
+      "version": 1,
+      "returnUrl": "building.list",
+      "privileges": [
+        "viewSpaceConfiguration",
+        "ModifyBuildings",
+        "ViewBuildings"
+      ]
+    }
+  ]
+}

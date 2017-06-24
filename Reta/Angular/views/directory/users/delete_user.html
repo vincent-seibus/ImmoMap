@@ -1,0 +1,31 @@
+﻿<div class="ibox product-detail" id="candidatEditCtrl">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="close()">&times;</button>
+        <h4 class="modal-title">{{ 'userViewTitle' | translate }}</h4>
+    </div>
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="wizard content">
+                    <div class="form-horizontal">
+                        <form class="m-t" role="form" name="userEditForm" novalidate>
+                            <p>
+                                {{ 'userDeleteMessageConfirmation' | translate }}
+                            </p>                            
+
+                            <div>
+                                <button type="submit" ng-click="delete()" class="btn btn-primary btn-sm"><i class="fa fa-check"></i> {{ 'userDeleteButtonSubmit' | translate}} </button>
+                                <a class="btn btn-white btn-sm" ng-click="close()"><i class="fa fa-close"></i> {{ 'userDeleteButtonClose' | translate}} </a>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+
+</script>

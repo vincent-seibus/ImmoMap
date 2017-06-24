@@ -1,0 +1,108 @@
+﻿<div class="ibox product-detail" id="emailSendCtrl">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="close()">&times;</button>
+        <h4 class="modal-title">Envoyer des emails</h4>
+    </div>
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col-md-12">              
+                <div class="">
+                    <div class="row" style="word-wrap:break-word;">
+                        <div class="col-md-6">
+                            Choisir le modèle d'email :
+                        </div>
+                        <div class="col-md-6">
+                            <select ng-model="templateSelected" class="form-control">
+                                <option ng-repeat="template in templates" value="{{template.ID}}">{{template.Name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row" style="word-wrap:break-word;margin-top:20px">
+                        <div class="col-md-12">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a ui-sref="configuration.email_templates">{{ 'emailTemplateEditLink' | translate }}</a>
+                        </div>
+                    </div>
+                    <div class="row" style="word-wrap:break-word;margin-top:20px">
+                        <div class="col-md-12">
+                            <div style="position:relative;margin-top:5px" id="uploadFileDiv">
+                                <a class='btn btn-primary btn-upload' href='javascript:;'>
+                                    <i class="glyphicon glyphicon-paperclip"></i> pièce jointe
+                                    <input type="file" name='uploadAttachment[]' id='uploadAttachment' style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' size="40" onchange='addFile("uploadFileDiv")'>
+                                </a>
+                                &nbsp;
+                                <p id="divFilesUplaoded">
+
+                                    <button type="button" class="close" onclick="removeFile()">&times;</button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <h4>L'email choisit au-dessus sera envoyé aux adresses suivantes : </h4>
+                    <p>
+                        envoyer les emails du
+                        <select ng-model="startIndex">
+                            <option ng-repeat="index in indexes" value="{{index}}"> {{ index }} </option>
+                        </select>
+                        au
+                        <select ng-model="endIndex">
+                            <option ng-repeat="index in indexes" value="{{index}}"> {{ index }} </option>
+                        </select>
+                    </p>
+
+                    <hr />
+                    <div id="emailsToSend" >
+                        <p ng-repeat="candidat in candidats">
+                            {{ candidat.Email }}
+                        </p>
+                    </div>                    
+                </div>               
+            </div>
+        </div>
+    </div>
+    <div class="ibox-footer">
+        <button type="button" ng-click="send()" id="sendEmailButton" class="btn btn-primary"><i class="fa fa-send"></i> Envoyer <img id="gifEnvoyer" style="display:none" src='img/squares.gif' width='20' /></button>
+        <button type="button" class="btn btn-default" id="cancelButton" ng-click="close()"><i class="fa fa-close"></i> Fermer</button>
+    </div>
+</div>
+<script>
+    function addFile(elementid) {
+        var input = document.getElementById('uploadAttachment');
+        var divFilesUplaoded = document.getElementById('uploadAttachment');
+
+
+
+        for (var i = 0; i < input.files.length; i++) {
+
+            if (document.getElementById(input.files[i].name) == null) {
+                var elementToAdd = "<span class='label label-primary label-email' id='" + input.files[i].name + "'>" +
+                  input.files[i].name +
+                 "</span>";
+                $("#" + "divFilesUplaoded").prepend(elementToAdd);
+            }
+        }
+
+        $(".btn-upload").hide();
+
+        var newUploadInput = " <a class='btn btn-primary btn-upload' href='javascript:;' >" +
+                                    '<i class="glyphicon glyphicon-paperclip" ></i> pièce jointe' +
+                                   " <input type='file' name='uploadAttachment[]' id='uploadAttachment' style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:\"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)\";opacity:0;background-color:transparent;color:transparent;' size=\"40\" onchange='addFile(\"uploadFileDiv\")' >" +
+                                "</a>";
+        $("#" + "uploadFileDiv").prepend(newUploadInput);
+
+    }
+
+    function removeFile() {
+        $(".btn-upload").remove();
+        $("#divFilesUplaoded").empty();
+        var newUploadInput = " <a class='btn btn-primary btn-upload' href='javascript:;' >" +
+                                   '<i class="glyphicon glyphicon-paperclip" ></i> pièce jointe' +
+                                  " <input type='file' name='uploadAttachment[]' id='uploadAttachment' style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:\"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)\";opacity:0;background-color:transparent;color:transparent;' size=\"40\" onchange='addFile(\"uploadFileDiv\")' multiple='' >" +
+                               "</a>";
+        $("#" + "uploadFileDiv").prepend(newUploadInput);
+
+        var buttonRemove = '<button type="button" class="close" onclick="removeFile()">&times;</button>';
+        $("#divFilesUplaoded").prepend(buttonRemove);
+
+    }
+</script>

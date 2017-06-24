@@ -1,0 +1,125 @@
+﻿
+<!DOCTYPE html>
+<html ng-app="coduco">
+
+<head ng-controller="headerCtrl as header">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page title set in pageTitle directive -->
+    <title page-title></title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font awesome -->
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <!-- Plugin css-->
+    <link href="js/plugins/angular-material/angular-material.css" rel="stylesheet" />
+    <link href="js/plugins/angular-resizable/angular-resizable.min.css" rel="stylesheet" />
+    <link href="css/plugins/angular-notify/angular-notify.min.css" rel="stylesheet" />
+    
+    <!-- Main Inspinia CSS files -->
+    <link href="css/animate.css" rel="stylesheet">
+    <link id="loadBefore" href="css/style.css" rel="stylesheet">
+    <link id="loadBefore" href="css/specific.css" rel="stylesheet">
+    <!-- Specific to space -->
+    <link id="loadBefore" ng-href="{{ changeCss() }}" rel="stylesheet"> 
+    <link href="js/plugins/angular-resizable/angular-resizable.min.css" rel="stylesheet" />
+</head>
+
+<!-- ControllerAs syntax -->
+<!-- Main controller with serveral data used in Inspinia theme on diferent view -->
+<body ng-controller="MainCtrl as main" class="{{$state.current.data.specialClass}}"  ng-class="{'fixed-sidebar':!$state.includes('landing'),'fixed-nav':!$state.includes('landing'),'fixed-nav-basic':!$state.includes('landing')}" landing-scrollspy id="page-top">
+<!-- Main view  -->
+<div ui-view></div>
+
+<!-- jQuery and Bootstrap -->
+<script src="js/jquery/jquery-2.1.1.min.js"></script>
+<script src="js/plugins/jquery-ui/jquery-ui.js"></script>
+<script src="js/bootstrap/bootstrap.min.js"></script>
+<script src="js/jquery/jquery.dataTables.min.js"></script>
+    <!-- Google maps api -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_MvdI3d3GbHw0ZmTypchThV2iuq2F9fU"></script>
+
+<!-- MetsiMenu -->
+<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+
+<!-- SlimScroll -->
+<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+<!-- Peace JS 
+<script src="js/plugins/pace/pace.min.js"></script>-->
+
+<!-- Custom and plugin javascript -->
+<script src="js/coduco.js"></script>
+
+
+<!-- Main Angular scripts-->
+<script src="js/angular/angular.min.js"></script>
+
+<script src="js/angular/angular-sanitize.js"></script>
+<script src="js/plugins/oclazyload/dist/ocLazyLoad.min.js"></script>
+<script src="js/plugins/ngStorage/ngStorage.min.js"></script>
+<script src="js/angular-translate/angular-translate.min.js"></script>
+<script src="js/ui-router/angular-ui-router.min.js"></script>
+<script src="js/bootstrap/ui-bootstrap-tpls-1.1.2.min.js"></script>
+<script src="js/plugins/angular-idle/angular-idle.js"></script>
+<script src="js/plugins/ngResource/resource.js"></script>
+<script src="js/angular/angular-animate.js"></script>    
+<script src="js/angular/angular-aria.js"></script>
+<script src="js/plugins/angular-material/angular-material.js"></script>
+<script src="bower_components/ng-cordova-oauth/dist/ng-cordova-oauth.min.js"></script>
+<script src="bower_components/webcam/dist/webcam.min.js"></script>
+<script src="js/plugins/angular-resizable/angular-resizable.min.js"></script>
+<script src="js/plugins/angular-notify/angular-notify.min.js"></script>
+<script src="js/plugins/moment/moment.min.js"></script>
+    
+<!-- Anglar App Script -->
+<script src="js/app.js"></script>
+<script src="js/config.js"></script>
+<script src="js/translations.fr.js"></script>
+<script src="js/translations.en.js"></script>
+<script src="js/service.js"></script>
+<script src="js/directives.js"></script>
+<script src="js/controllers.js"></script>
+<script src="js/mydirectives.js"></script>
+
+<script>    
+    /*/ ACTIVER LES SERVICES WORKER /*/
+    if ('serviceWorker' in navigator) {
+        /*/To remove service worker if needed/*/
+        navigator.serviceWorker.getRegistrations().then(function (registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        });
+        /*/To install service worker if needed
+       navigator.serviceWorker.register('service-worker.js')
+           .then(() => console.log('service worker installed'))
+           .catch(err => console.log('Error', err));
+           /*/
+       /*/ Try notification , just test
+       function showNotification() {
+           Notification.requestPermission(function (result) {
+               if (result === 'granted') {
+                   navigator.serviceWorker.ready.then(function (registration) {
+                       registration.showNotification('AssessMind', {
+                           body: 'La ',
+                           icon: 'img/logo.png',
+                           vibrate: [200, 100, 200, 100, 200, 100, 200],
+                           tag: ''
+                       });
+                   });
+               }
+           });
+       }
+       showNotification();
+       /*/
+   }
+   
+</script>
+</body>
+</html>

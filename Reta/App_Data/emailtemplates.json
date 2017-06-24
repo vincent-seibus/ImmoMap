@@ -1,0 +1,26 @@
+﻿[
+  {
+    "Body": "",
+    "BodyUrl": "~/Angular/email_templates/invitation_quiz.fr.html",
+    "Lang": "fr",
+    "Name": "InvitationQuiz",
+    "Type": "InvitationQuiz",
+    "Subject": "Invitation à passer des questionnaires"
+  },
+  {
+    "Body": "",
+    "BodyUrl": "~/Angular/email_templates/email_forgot_password.html",
+    "Lang": "fr",
+    "Name": "VerifyEmail",
+    "Type": "VerifyEmail",
+    "Subject": "Vérifier votre email"
+  },
+  {
+    "Body": "",
+    "BodyUrl": "~/Angular/email_templates/email_verification.html",
+    "Lang": "fr",
+    "Name": "ForgotPassword",
+    "Type": "ForgotPassword",
+    "Subject": "Réinitialiser votre mot de passe"
+  }
+]

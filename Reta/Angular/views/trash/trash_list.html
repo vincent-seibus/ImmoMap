@@ -1,0 +1,70 @@
+﻿<div ng-controller="isAuthenticatedCtrl"></div>
+<script type="text/javascript">
+    if (document.getElementById("page-top") === undefined || document.getElementById("page-top") === null) {
+        document.location.href="/";
+    }
+</script>
+<div class="row border-bottom">
+    <nav class="navbar navbar-fixed-top" role="navigation" style="margin-bottom: 0; z-index:2038;" ng-show="trashSelected.length > 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="" ng-click="trashSelected = [];"><i class="fa fa-arrow-left"></i></a>
+            <div class="navbar-form-custom">
+                <div class="form-group m-t">
+                    <a ng-click="deleteForeverOrRestore(trashSelected,trashs, '/trash/DeleteForever'); trashSelected = [];" class="btn btn-xs btn-outline btn-white no-borders inline alignleft" title="{{ 'trashDeleteButton' | translate }}" ng-show="isInRole(['Supervisor','ModifyTrash'])"> <i class="fa fa-trash fa-lg"></i> </a>
+                     <a ng-click="deleteForeverOrRestore(trashSelected,trashs, '/trash/PostRestore'); trashSelected = [];" class="btn btn-xs btn-outline btn-white no-borders inline alignleft" title="{{ 'trashRestoreButton' | translate }}" ng-show="isInRole(['Supervisor','ModifyTrash'])"> <i class="fa fa-recycle fa-lg"></i> </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="row wrapper border-bottom white-bg page-heading no-padding">
+    <div class="col-md-12 col-xs-12 alignleft m-t-sm m-b-sm">
+        <div>
+            <md-input-container class="md-block" flex-gt-sm>
+                <label> {{ 'trashSearchLabel' | translate }}</label>
+                <input ng-model="search">
+            </md-input-container>
+        </div>
+    </div>
+</div>
+<div class="row wrapper wrapper-content">
+    <div class="row" ng-show="filteredtrashs.length > 0">
+        <div class="col-md-12" ng-repeat="trash in filteredtrashs = (trashs | filter:search | limitTo:quantity)">
+            <div class="ibox" ng-class="{ 'ibox-active' : isSelected(trash, trashSelected) }" ng-click="select(trash,trashSelected)">
+                <div class="ibox-content product-box">
+                    <!--<div class="">
+                         <img src="{{trash.urlImage}}" />
+                    </div>-->
+                    <div class="product-desc">
+                        <a  class="product-name"> {{trash.Name}}  <i class="small"> {{trash.EntityType}} </i> </a> 
+                        <div class="small m-t-xs">
+                            <i class="fa fa-clock-o" ng-show="trash.DeletedOn"></i>  {{ trash.DeletedOn }} &nbsp;&nbsp; 
+                        </div>
+                        <div class="m-t text-righ">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-hide="filteredtrashs.length > 0 || loading">
+        <div class="col-md-12 aligncenter">
+            <p style="text-align:center"><label>{{ 'trashCustomerNoResultText' | translate }}</label></p>
+        </div>
+    </div>
+    <div class="row" ng-show="loading">
+        <div class="col-md-12">
+            <p style="text-align:center">
+                <img width="30px" src="/Angular/img/squares.gif" />
+            </p>
+        </div>
+    </div>
+    <div class="row" ng-hide="quantity > filteredtrashs.length || filteredtrashs.length == 0 || filteredtrashs == null">
+        <div class="col-md-12">
+            <button in-view="moreResultIsVisible = $inview" class="btn btn-default form-control" ng-click="moreResult(quantity)"><i class="fa fa-plus"></i> {{ 'trashListMoreResultButton' | translate }} </button>
+        </div>
+    </div>
+    <div class="row">
+        <p>&nbsp;</p>
+    </div>
+</div>

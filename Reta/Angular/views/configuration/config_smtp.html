@@ -1,0 +1,52 @@
+﻿<div class="ibox product-detail">
+    <div class="ibox-content">
+        <div class="middle-box text-center loginscreen ">
+            <div>
+                <div>
+                    <h1 class="logo-name"></h1>
+                </div>
+                <h3>{{ 'smtpEditTitle' | translate }}  </h3>
+                <p>
+                    {{ 'smtpEditTextIntroduction' | translate }}
+                </p>
+                <p></p>
+                <form class="m-t" role="form" name="smtpEditForm" ng-submit="processFormEditSmtp(smtpEditForm.$valid)" novalidate>
+                    <div class="form-group" ng-class="{ 'has-error' : smtpEditForm.host.$invalid && smtpEditForm.host.$touched}">
+                        <label class="control-label">{{ 'smtpHostLabel' | translate }}</label>
+                        <input class="form-control" ng-model="smtp.host" name="host" type="text" placeholder="{{ 'smtpHostLabel' | translate }}" required="">
+                        <p ng-show="smtpEditForm.host.$invalid && smtpEditForm.host.$touched" class="help-block"> {{ 'smtpEditFormValidationTextHost' | translate }} </p>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : smtpEditForm.port.$invalid && smtpEditForm.port.$touched}">
+                        <label class="control-label">{{ 'smtpPortLabel' | translate }}</label>
+                        <input class="form-control" ng-model="smtp.port" name="port" placeholder="{{ 'smtpPortLabel' | translate }}" required="">
+                        <p ng-show="smtpEditForm.port.$invalid && smtpEditForm.port.$touched" class="help-block"> {{ 'smtpEditFormValidationTextPort' | translate }} </p>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : smtpEditForm.username.$invalid && smtpEditForm.username.$touched}">
+                        <label class="control-label">{{ 'smtpusernameLabel' | translate }}</label>
+                        <input class="form-control" ng-model="smtp.username" name="username" type="text" placeholder="{{ 'smtpusernameLabel' | translate }}" required="">
+                        <p ng-show="smtpEditForm.username.$invalid && smtpEditForm.username.$touched" class="help-block"> {{ 'smtpEditFormValidationTextUsername' | translate }} </p>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : smtpEditForm.password.$invalid && smtpEditForm.password.$touched}">
+                        <label class="control-label">{{ 'smtpPasswordLabel' | translate }}</label>
+                        <input class="form-control" ng-model="smtp.password" name="password" type="password" placeholder="{{ 'smtpPasswordLabel' | translate }}" required="">
+                        <p ng-show="smtpEditForm.password.$invalid && smtpEditForm.password.$touched" class="help-block"> {{ 'smtpEditFormValidationTextPassword' | translate }} </p>
+                    </div>
+                    <div  class="form-group"  ng-class="{ 'has-error' : smtpEditForm.enableSsl.$invalid && smtpEditForm.enableSsl.$touched}">                       
+                        <label>
+                            <input icheck type="checkbox" ng-model="smtp.enableSsl" name="enableSsl" >
+                           {{ 'smtpEnableSslLabel' | translate }}
+                        </label>                              
+                        <p ng-show="smtpEditForm.enableSsl.$invalid && smtpEditForm.enableSsl.$touched" class="help-block"> {{ 'smtpEditFormValidationTextEnableSsl' | translate }} </p>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : smtpEditForm.timeout.$invalid && smtpEditForm.timeout.$touched}">
+                        <label class="control-label">{{ 'smtpTimeoutLabel' | translate }}</label>
+                        <input class="form-control" ng-model="smtp.timeout" name="timeout" placeholder="{{ 'smtpTimeoutLabel' | translate }}" required="">
+                        <p ng-show="smtpEditForm.timeout.$invalid && smtpEditForm.timeout.$touched" class="help-block"> {{ 'smtpEditFormValidationTextTimeout' | translate }} </p>
+                    </div>
+                   
+                    <button id="submitButtonsmtpEditForm" type="submit" ng-disabled="!smtpEditForm.$valid" class="btn btn-primary block full-width m-b">{{ 'SubmitButtonsmtpEditForm' | translate }} <i class="vertical-align glyphicon glyphicon-circle-arrow-right"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

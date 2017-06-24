@@ -1,0 +1,56 @@
+﻿<div class="ibox product-detail" id="candidatEditCtrl">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="close()">&times;</button>
+        <h4 class="modal-title">{{ 'EmailTemplateCreateTitle' | translate }}</h4>
+    </div>
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="wizard content">
+                    <div class="form-horizontal">
+                        <form class="m-t" role="form" name="emailTemplateCreateForm" novalidate>                          
+                            <div class="form-group">
+                                <p class="font-bold">{{ 'EmailTemplateCreateName' | translate }}</p>
+                                <div class="col-md-10">
+                                    <input ng-model="template.Name" class="form-control" />
+                                </div>
+                            </div>                          
+                            <div class="form-group">
+                                <p class="font-bold">{{ 'EmailTemplateCreateType' | translate }}</p>
+                                <div class="col-md-10">                                   
+                                    <select ng-model="template.Type" class="form-control" >
+                                        <option selected="selected" value="candidat">candidat</option>
+                                        <option value="customer">client</option>
+                                        <option value="linkedin">contact</option>
+                                    </select>                                   
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <p class="font-bold">{{ 'EmailTemplateCreateSubject' | translate }}</p>
+                                <div class="col-md-10">
+                                    <input ng-model="template.Subject" class="form-control"  />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <p class="font-bold">{{ 'EmailTemplateCreateBody' | translate }}</p>
+                                <div class="col-md-10">
+                                    <textarea rows="10" ng-model="template.Body" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div>
+                                <button type="submit" ng-click="create(emailTemplateCreateForm.$valid)" class="btn btn-primary btn-sm"><i class="fa fa-check"></i> {{ 'EmailTemplateCreateButtonSubmit' | translate}} </button>
+                                <a class="btn btn-white btn-sm" ng-click="close()"><i class="fa fa-close"></i> {{ 'EmailTemplateCreateButtonClose' | translate}} </a>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+
+</script>

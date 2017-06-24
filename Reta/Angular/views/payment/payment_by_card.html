@@ -1,0 +1,42 @@
+﻿<div ng-controller="isAuthenticatedCtrl"></div>
+<div class="middle-box text-center loginscreen  animated fadeInDown">
+    <a ng-click="stepBack()" class="btn btn-default block full-width m-b"><i class="vertical-align glyphicon glyphicon-circle-arrow-left"></i> {{ 'PaymentWizardStepBackButton' | translate }} </a>
+    <div>
+        <div>
+            <h1 class="logo-name"></h1>
+        </div>
+        <h3>{{ 'PaymentCardFormTitle' | translate }}  </h3>
+        <p>
+            {{ 'PaymentCardFormIntroduction' | translate }}
+        </p>
+        <p></p>
+
+        <form class="m-t" role="form" name="form" ng-submit="processForm(form.$valid)" novalidate>
+            <div class="form-group" ng-class="{ 'has-error' : form.cardHolderName.$invalid && form.cardHolderName.$touched}">
+                <input type="text" class="form-control" ng-model="formData.cardHolderName" name="cardHolderName" placeholder="{{ 'PaymentCardFormCardHolderNamePlaceholder' | translate }}" required autofocus>
+                <p ng-show="form.cardHolderName.$invalid && form.cardHolderName.$touched" class="help-block"> {{ 'PaymentCardFormCardHolderNameValidation' | translate }} </p>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : form.number.$invalid && form.number.$touched}">
+                <input type="text" pattern="[0-9]*" size="16" maxlength="16" minlength="16" class="form-control" ng-model="formData.number" name="number" placeholder="{{ 'PaymentCardFormNumberPlaceholder' | translate }}" required>
+                <p ng-show="form.number.$invalid && form.number.$touched" class="help-block"> {{ 'PaymentCardFormNumberValidation' | translate }} </p>
+            </div>       
+            <div class="form-group" ng-class="{ 'has-error' : (form.year.$invalid && form.year.$touched) || (form.month.$invalid && form.month.$touched) }">
+                <div class="input-group" >
+                    <input type="text" pattern="[0-9]*" maxlength="2" minlength="2" class="form-control" ng-model="formData.month" name="month" placeholder="{{ 'PaymentCardFormMonthPlaceholder' | translate }}" required>
+                    <span class="input-group-btn" style="width:0px;"></span>
+                    <input type="text" pattern="[0-9]*" maxlength="2" minlength="2" class="form-control" ng-model="formData.year" name="year" placeholder="{{ 'PaymentCardFormYearPlaceholder' | translate }}" required>                  
+                </div>
+                <span ng-show="form.year.$invalid && form.year.$touched" class="help-block"> {{ 'PaymentCardFormYearValidation' | translate }} </span>
+                <span ng-show="form.month.$invalid && form.month.$touched" class="help-block"> {{ 'PaymentCardFormMonthValidation' | translate }} </span>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : form.cvc.$invalid && form.cvc.$touched }">
+                <input type="text" pattern="[0-9]*" size="4" maxlength="4"  class="form-control" ng-model="formData.cvc" name="cvc" placeholder="{{ 'PaymentCardFormCvcPlaceholder' | translate }}" required>
+                <p ng-show="form.cvc.$invalid && form.cvc.$touched" class="help-block"> {{ 'PaymentCardFormCvcValidation' | translate }} </p>               
+            </div>
+            <button type="submit" ng-disabled="!form.$valid || loadingForm" 
+                    class="btn btn-primary block full-width m-b">{{ 'paymentCardFormSubmitButton' | translate }} {{ formData.amount + " €" }} 
+            <i class="vertical-align glyphicon glyphicon-arrow-right"></i> <img ng-show="loadingForm" width="20px" src="/Angular/img/squares.gif" /></button>
+        </form>
+               
+    </div>
+</div>

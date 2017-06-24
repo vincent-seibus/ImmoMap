@@ -1,0 +1,88 @@
+﻿<script type="text/javascript">
+    if (document.getElementById("page-top") === undefined || document.getElementById("page-top") === null) {
+    document.location.href="/";
+  }
+</script>
+<div ng-controller="isAuthenticatedCtrl"></div>
+<div class="row border-bottom">
+    <nav class="navbar navbar-fixed-top" role="navigation" style="margin-bottom: 0; z-index:2038;" ng-show="interviewsSelected.length > 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="" ng-click="interviewsSelected = [];"><i class="fa fa-arrow-left"></i></a>
+            <div class="navbar-form-custom">
+                <div class="form-group m-t">
+                    <a ng-show="interviewsSelected.length == 1" ng-click="updateInterview(interviewsSelected[0])" class="btn btn-xs btn-outline btn-white no-borders inline alignleft" title="{{ 'interviewTemplateUpdateButton' | translate }}"> <i class="fa fa-edit fa-lg"></i> </a>
+                    <a ng-click="deleteMulti(interviewsSelected,interviews, '/interviews/DeleteInterviewTemplate'); interviewsSelected = [];" class="btn btn-xs btn-outline btn-white no-borders inline alignleft" title="{{ 'candidatDeleteButton' | translate }}"> <i class="fa fa-trash fa-lg"></i> </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="row wrapper wrapper-content">
+    <div class="row" ng-show="filteredInterviews.length > 0">
+        <div class="col-md-12" ng-repeat="interview in filteredInterviews = ( interviews | limitTo:quantity)">
+            <div class="ibox" ng-class="{ 'ibox-active' : isSelected(interview, interviewsSelected) }" ng-click="select(interview,interviewsSelected)">
+                <div class="ibox-content product-box">
+                    <div class="product-desc">
+                        <a class="product-name"> {{ interview.Name }} </a>
+                        <div class="small m-t-xs" ng-show="interview.CreatedBy">
+                            <i ng-show="interview.CreatedOn"> {{ interview.CreatedOn | date: "dd/MM/yyyy" }} </i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Voir les éléments lorsque séléctionné-->
+            <div class="row" ng-show="isSelected(interview, interviewsSelected)">
+                <div class="col-md-6 col-md-offset-3 col-xs-12">
+                    <div class="ibox" ng-repeat="item in interview.items">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 translate="{{item.description}}"></h3>
+                            </div>
+                        </div>
+                        <div class="row" ng-show="item.question != null">
+                            <div class="col-md-12">
+                                <h5 translate="{{item.question}}"></h5>
+                            </div>
+                        </div>                      
+                        <div class="row" ng-show="item.comment != null">
+                            <h5></h5>
+                            <div class="col-md-12">
+                                <textarea rows="2" disabled class="form-control" ng-model="item.comment" />
+                            </div>
+                        </div>
+                        <div class="row" ng-show="item.skill != null">
+                            <div class="col-md-12">
+                                <h5 translate="{{item.skill}}"></h5>
+                            </div>
+                        </div>                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-hide="filteredInterviews.length > 0 || loading">
+        <div class="col-md-12 aligncenter">
+            <p style="text-align:center"><label>{{ 'candidatCustomerNoResultText' | translate }}</label></p>
+        </div>
+    </div>
+    <div class="row" ng-show="loading">
+        <div class="col-md-12">
+            <p style="text-align:center">
+                <img width="30px" src="/Angular/img/squares.gif" />
+            </p>
+        </div>
+    </div>
+    <div class="row" ng-hide="quantity > filteredInterviews.length">
+        <div class="col-md-12">
+            <button in-view="moreResultIsVisible = $inview" class="btn btn-default form-control" ng-click="moreResult(quantity)"><i class="fa fa-plus"></i> {{ 'candidatListMoreResultButton' | translate }} </button>
+        </div>
+    </div>
+    <div class="row">
+        <p>&nbsp;</p>
+    </div>
+</div>
+<div id="small-chat" ng-click="createInterview()">
+    <a class="open-small-chat btn-primary" title="{{ 'candidatCreateInterviewButton' | translate }}">
+        <i class="fa fa-plus"></i>
+    </a>
+</div>

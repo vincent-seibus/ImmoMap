@@ -1,0 +1,104 @@
+﻿<div ng-controller="isAuthenticatedCtrl"></div>
+<script type="text/javascript">
+    if (document.getElementById("page-top") === undefined || document.getElementById("page-top") === null) {
+        document.location.href = "/";
+    }
+</script>
+<nav class="navbar navbar-fixed-top" role="navigation" style="margin-bottom: 0; z-index:2038;" ng-show="buildingSelected.length > 0">
+    <div class="navbar-header">
+        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="" ng-click="buildingSelected = [];"><i class="fa fa-arrow-left"></i></a>
+        <div class="navbar-form-custom">
+            <div class="form-group m-t">
+                <a ng-click="deleteMulti(buildingSelected,buildings, '/buildings/PostDeleteMultiBuilding'); buildingSelected = [];" class="btn btn-xs btn-outline btn-white no-borders inline alignleft" title="{{ 'multiDeleteButton' | translate }}"> <i class="fa fa-trash fa-lg"></i> </a>
+                <a ng-show="buildingSelected.length == 1" ng-click="goTo('building.createOrUpdate',{ building : buildingSelected[0]})" class="btn btn-xs btn-outline btn-white no-borders inline alignleft" title="{{ 'editButton' | translate }}"> <i class="fa fa-edit fa-lg"></i> </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div id="map-canvas" class="map-canvas"  />
+
+<div class="buildinglist-besidemap" ng-class="{ 'active' : ui.showList }" >
+    <div full-scroll>
+        <button class="close" ng-show="ui.showList" ng-click="ui.showList = false"><i class="fa fa-remove"></i></button>
+        <div class="row buildinglist-row">
+            <div class="col-md-12 col-xs-12 alignleft m-t-sm m-b-sm white-bg">
+                <div>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label> {{ 'buildingSearchLabel' | translate }}</label>
+                        <input ng-model="search" ng-focus="ui.showList = true">
+                    </md-input-container>
+                </div>
+            </div>
+        </div>
+        <div class="row wrapper wrapper-content" ng-show="ui.showList">
+            <div class="row building-list" ng-show="filteredBuildings.length > 0">
+                <md-content>
+                    <md-list flex><!--
+                        <md-subheader class="md-no-sticky">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label> {{ 'buildingSearchLabel' | translate }}</label>
+                            <input ng-model="search" ng-focus="ui.showList = true">
+                        </md-input-container>
+                        </md-subheader>-->
+                        <md-list-item class="md-3-line" ng-repeat="building in filteredBuildings = (buildings | filter:search | limitTo:quantity)" 
+                                      ng-click="goTo('building.createOrUpdate',{ building : building})">
+                            <md-checkbox class="md-primary" ng-class="{ 'md-checked' : isSelected(building, buildingSelected) }"  ng-click="select(building,buildingSelected)"></md-checkbox>
+                           <!-- <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />-->
+                            <div class="md-list-item-text"  layout="column">
+                                <h3>{{ building.Name }}</h3>
+                                <h4>{{ building.ConfigurationParsed.fullAddress }}</h4>
+                                <p>{{ building.ConfigurationParsed.description }}</p>
+                            </div>
+                        </md-list-item>
+                     </md-list>
+                    </md-content>
+                       <!-- <div class="col-md-12 m-b-none" ng-repeat="building in filteredBuildings = (buildings | filter:search | limitTo:quantity)">
+                            <div class="ibox" ng-class="{ 'ibox-active' : isSelected(building, buildingSelected) }" ng-click="select(building,buildingSelected)">
+                                <div class="ibox-content product-box">
+                                    <div class="">
+                                 <img src="{{building.urlImage}}" />
+                            </div>
+                                    <div class="product-desc">
+                                        <a ng-click="view(building)" class="product-name"> {{building.Name}} </a>
+                                        <div class="small m-t-xs">
+                                            <i class="fa fa-marker" ng-show="building.addressFull"></i>  {{building.addressFull}} &nbsp;&nbsp; <i class="fa fa-phone" ng-show="building.Telephone"></i> {{building.Telephone}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+            </div>
+            <div class="row" ng-hide="filteredBuildings.length > 0 || loading">
+                <div class="col-md-12 aligncenter">
+                    <p style="text-align:center"><label>{{ 'NoResultText' | translate }}</label></p>
+                </div>
+            </div>
+            <div class="row" ng-show="loading">
+                <div class="col-md-12">
+                    <p style="text-align:center">
+                        <img width="30px" src="/Angular/img/squares.gif" />
+                    </p>
+                </div>
+            </div>
+            <div class="row" ng-hide="quantity > filteredBuildings.length">
+                <div class="col-md-12">
+                    <button in-view="moreResultIsVisible = $inview" class="btn btn-default form-control" ng-click="moreResult(quantity)"><i class="fa fa-plus"></i> {{ 'listMoreResultButton' | translate }} </button>
+                </div>
+            </div>
+            <div class="row">
+                <p>&nbsp;</p>
+            </div>
+        </div>
+        <div id="small-chat" class="btn-create-position" ng-show="ui.showList" ng-click="goTo('building.createOrUpdate')">
+            <a class="open-small-chat btn-primary" title="{{ 'ButtonCreateNew' | translate }}">
+                <i class="fa fa-plus"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
+
+

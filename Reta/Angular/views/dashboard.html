@@ -1,0 +1,46 @@
+﻿<!-- security part -->
+<script type="text/javascript">
+    if (document.getElementById("page-top") === undefined || document.getElementById("page-top") === null) {
+    document.location.href="/angular/index.html";
+  }
+</script>
+<div ng-controller="isAuthenticatedCtrl"></div>
+<!-- /security part -->
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5><strong>Les Candidats </strong></h5>
+                    <div ibox-tools></div>
+                </div>
+                <div class="ibox-content">
+                    <a ui-sref="candidats.my_candidats" class="btn btn-primary">{{ 'MenuCandidatsLinkCandidats' | translate }} </a>        
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5><strong>Les Clients </strong></h5>
+                    <div ibox-tools></div>
+                </div>
+                <div class="ibox-content">
+                    <a ui-sref="customers.my_customers" class="btn btn-primary">{{ 'MenuClientsLinkClients' | translate }} </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5><strong> Les documents </strong></h5> 
+                    <div ibox-tools></div>                   
+                </div>
+                <div class="ibox-content" >
+                    <a ui-sref="documents.my_documents" class="btn btn-primary">{{ 'MenuLinkedinLinkDocuments' | translate }} </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

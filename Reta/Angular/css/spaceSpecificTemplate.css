@@ -1,0 +1,134 @@
+﻿body {
+   height:auto;
+}
+
+
+.btn-primary,
+.btn-primary.btn-outline,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:active:hover {
+    background-color: #xxxxxx;
+    border-color: #xxxxxx;
+    color: #FFFFFF;
+}
+
+.btn-primary.disabled,
+.btn-primary.disabled:hover, 
+.btn-primary.disabled:focus, 
+.btn-primary.disabled:active, 
+.btn-primary.disabled.active, 
+.btn-primary[disabled], 
+.btn-primary[disabled]:hover, 
+.btn-primary[disabled]:focus, 
+.btn-primary[disabled]:active, 
+.btn-primary.active[disabled], 
+fieldset[disabled] .btn-primary, 
+fieldset[disabled] .btn-primary:hover, 
+fieldset[disabled] .btn-primary:focus, 
+fieldset[disabled] .btn-primary:active, 
+fieldset[disabled] .btn-primary.active
+ {
+    background-color: #xxxxxx;
+    border-color: #xxxxxx;
+    color: #FFFFFF;
+}
+
+
+
+.nav > li.active{
+    border-left : 4px solid #xxxxxx;
+}
+
+.label-primary,
+.label-primary:hover,
+.label-primary:focus,
+.label-primary:active,
+.label-primary:active:hover {
+    background-color: #xxxxxx;
+    border-color: #xxxxxx;
+    color: #FFFFFF;
+}
+
+.label-email
+{
+    float: left;
+    margin-left:3px;
+    margin-top:3px;
+
+}
+
+.label-remove {
+  float:none;
+  position:relative;
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  filter: alpha(opacity=20);
+  opacity: .2;
+}
+.label-remove:hover,
+.label-remove:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  filter: alpha(opacity=50);
+  opacity: .5;
+}
+button.label-remove {
+  -webkit-appearance: none;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+
+tr.selected,
+tr.selected:hover,
+tr.selected:focus, 
+tr.selected:active,
+tr.selected:active:hover
+{
+    
+}
+
+
+tr.border_bottom td {
+  border-bottom:1pt solid #d9d9d9;
+}
+
+button.inline {
+    margin-bottom : 5px;
+}
+
+.cropArea {
+    overflow: hidden;
+    width: 200px;
+    height: 200px;
+}
+
+/*
+    autocomplete custom template
+*/
+
+.autocompletedemoCustomTemplate .autocomplete-custom-template li {
+  border-bottom: 1px solid #ccc;
+  height: auto;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  white-space: normal; }
+
+.autocompletedemoCustomTemplate .autocomplete-custom-template li:last-child {
+  border-bottom-width: 0; }
+
+.autocompletedemoCustomTemplate .autocomplete-custom-template .item-title,
+.autocompletedemoCustomTemplate .autocomplete-custom-template .item-metadata {
+  display: block;
+  line-height: 2; }
+
+.autocompletedemoCustomTemplate .autocomplete-custom-template .item-title md-icon {
+  height: 18px;
+  width: 18px; }

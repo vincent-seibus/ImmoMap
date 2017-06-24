@@ -1,0 +1,67 @@
+﻿<script type="text/javascript">
+    if (document.getElementById("page-top") === undefined || document.getElementById("page-top") === null) {
+    document.location.href="/";
+  }
+</script>
+<div ng-controller="isAuthenticatedCtrl"></div>
+<div class="row border-bottom">
+    <nav class="navbar navbar-fixed-top" role="navigation" style="margin-bottom: 0; z-index:2038;">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="" ng-click="goTo('configuration.interview_template.list')"><i class="fa fa-arrow-left"></i></a>
+            <div class="navbar-form-custom">
+                <div class="form-group m-t">
+                    <a class="btn btn-xs btn-outline btn-white no-borders inline alignleft" ng-click="createNewQuestion()" title="{{ 'interviewCreateNewQuestionButton' | translate }}"><i class="fa fa-question"></i> </a>
+                    <a class="btn btn-xs btn-outline btn-white no-borders inline alignleft" ng-click="createNewComment()" title="{{ 'interviewCreateNewCommentButton' | translate }}"><i class="fa fa-comment"></i></a>
+                    <a class="btn btn-xs btn-outline btn-white no-borders inline alignleft" ng-click="createNewSkill()" title="{{ 'interviewCreateNewSkillButton' | translate }}"><i class="fa fa-magnet"></i></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="wrapper wrapper-content">
+    <div class="row m-b">
+        <div class="col-md-6 col-md-offset-3 col-xs-12 center-element-inside">
+           
+                <div editable-label inputclass="editable-label-input" labelclass="editable-label" mymodel="interview.Name"></div>
+           
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 col-xs-12">
+            <div ui-sortable="sortableOptions" ng-model="items">
+                <div class="ibox" ng-repeat="item in items">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div editable-label inputclass="editable-label-input" labelclass="editable-label" mymodel="item.description"></div>
+                             <button type="button" class="close" ng-click="remove(item)">&times;</button>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="item.question != null">
+                        <div class="col-md-12">
+                            <input class="form-control" ng-model="item.question" name="question" type="text" placeholder="{{ 'interviewCreateQuestionPlaceholder' | translate }}" />
+                        </div>
+                    </div>                   
+                    <div class="row" ng-show="item.comment != null">
+                        <h5></h5>
+                        <div class="col-md-12">
+                            <textarea rows="2" disabled class="form-control" ng-model="item.comment" name="comment" type="text" placeholder="{{ 'interviewCreateCommentPlaceholder' | translate }}" />
+                        </div>
+                    </div>
+                    <div class="row" ng-show="item.skill != null">
+                        <div class="col-md-12">
+                            <input class="form-control" ng-model="item.skill" name="question" type="text" placeholder="{{ 'interviewCreateSkillPlaceholder' | translate }}" />
+                        </div>
+                    </div>                  
+                </div>
+            </div>
+            <div class="ibox m-b center-element-inside">
+                <button class="btn btn-primary inline" ng-click="createNewQuestion()"><i class="fa fa-question"></i> {{ 'interviewCreateNewQuestionButton' | translate }}</button>
+                <button class="btn btn-primary inline" ng-click="createNewComment()"><i class="fa fa-comment"></i> {{ 'interviewCreateNewCommentButton' | translate }}</button>
+                <button class="btn btn-primary inline" ng-click="createNewSkill()"><i class="fa fa-magnet"></i> {{ 'interviewCreateNewSkillButton' | translate }}</button>
+            </div>
+            <div class="ibox m-b center-element-inside">
+                <button class="btn btn-primary inline" ng-show="items.length > 0" ng-click="saveInterview()"><i class="fa fa-save"></i> {{ 'interviewSaveInterviewButton' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>

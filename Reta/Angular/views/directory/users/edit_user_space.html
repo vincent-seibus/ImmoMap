@@ -1,0 +1,29 @@
+﻿<div class="ibox product-detail">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="close()">&times;</button>
+        <h4 class="modal-title">{{ 'userSpaceEditTitle' | translate }} {{user.UserName}}</h4>
+    </div>
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="m-t" role="form" name="formEditUserSpace" ng-submit="processFormEditUserSpace(formEditUserSpace.$valid)" novalidate>
+                    <div class="wizard content">
+                        <div class="form-group" ng-class="{ 'has-error' : formEditUserSpace.space.$invalid && formEditUserSpace.space.$touched}">
+                            <p class="font-bold">{{ 'userSpaceDropListSpaces' | translate }}</p>
+                            <div class="col-md-10">
+                                <select name="space" ng-model="spaceId" class="form-control" required>
+                                    <option ng-repeat="space in spaces" value="{{space.Id}}">{{ space.Name }}</option>
+                                </select>
+                            </div>
+                            <p ng-show="formEditUserSpace.space.$invalid && formEditUserSpace.space.$touched" class="help-block"> {{ 'editUserSpaceValidationTextSpace' | translate }} </p>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-check"></i> {{ 'userSpaceEditButtonSubmit' | translate}} </button>
+                            <a class="btn btn-white btn-sm" ng-click="close()"><i class="fa fa-close"></i> {{ 'userSpaceEditButtonClose' | translate}} </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

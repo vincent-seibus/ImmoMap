@@ -1,0 +1,55 @@
+﻿{
+  "privileges": [
+    {
+      "code": "ViewUsersList",
+      "licence": "user",
+      "descriptionCode": "ViewUsersListDescription"
+    },
+    {
+      "code": "ModifyUsers",
+      "licence": "user",
+      "descriptionCode": "ModifyUsersDescription"
+    },
+    {
+      "code": "ModifyUserRoles",
+      "licence": "user",
+      "descriptionCode": "ModifyUserRolesDescription"
+    },
+    {
+      "code": "LogAsUser",
+      "licence": "user",
+      "descriptionCode": "LogAsUserDescription"
+    },
+
+    {
+      "code": "viewSpaceConfiguration",
+      "licence": "configuration",
+      "descriptionCode": "viewSpaceConfiguration"
+    },
+    {
+      "code": "ViewConfiguration",
+      "licence": "configuration",
+      "descriptionCode": "viewSpaceConfiguration"
+    },
+    {
+      "code": "ModifyTrash",
+      "licence": "Core",
+      "descriptionCode": "ModifyTrashDescription"
+    },
+    {
+      "code": "ViewTrash",
+      "licence": "Core",
+      "descriptionCode": "ViewTrashDescription"
+    },
+    {
+      "code": "ViewBuildings",
+      "licence": "Building",
+      "descriptionCode": "ViewBuildingsDescription"
+    },
+    {
+      "code": "ModifyBuildings",
+      "licence": "Building",
+      "descriptionCode": "ModifyBuildingsDescription"
+    }
+  ]
+}

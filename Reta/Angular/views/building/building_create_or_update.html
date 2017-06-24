@@ -1,0 +1,202 @@
+﻿<div ng-controller="isAuthenticatedCtrl"></div>
+<script type="text/javascript">
+    if (document.getElementById("page-top") === undefined || document.getElementById("page-top") === null) {
+        document.location.href="/";
+    }
+</script>
+<nav class="navbar navbar-fixed-top" role="navigation" style="margin-bottom: 0; z-index:2038;">
+    <div class="navbar-header">
+        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="" ng-click="goTo('building.list')">
+        <i class="fa fa-arrow-left"></i></a>
+        <div class="navbar-form-custom">
+            <div class="form-group m-t">
+                <a class="btn btn-xs btn-outline btn-white no-borders inline alignleft" ng-click="delete(building,'/Buildings/PostDeleteBuilding');goTo('building.list');" ng-show="building.Id"
+                   title="{{ 'deleteButtonText' | translate }}"><i class="fa fa-trash fa-lg"></i> </a>
+                <a class="btn btn-xs btn-outline btn-white no-borders inline alignleft" ng-click="save(form.$valid)"
+                   title="{{ 'SaveButtonText' | translate }}"><i class="glyphicon glyphicon-cloud-upload fa-lg"></i></a>
+                <!--<a class="btn btn-xs btn-outline btn-white no-borders inline alignleft" ng-click="erase(building)"
+                   title="{{ 'EraseButtonText' | translate }}"><i class="glyphicon glyphicon-erase fa-lg"></i></a>-->
+                
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="wrapper wrapper-content building-createorupdate">
+    <div class="row building-createorupdate">
+        <div class="col-md-6 col-sm-12 white-bg col building-createorupdate">
+            <div full-scroll>
+                <form name="form" novalidate>
+                    <div class="form-group">
+                        <h3>{{ 'buildingGeneralInfoTitle' | translate }}</h3>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : form.name.$invalid && form.name.$touched}">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label> {{ 'buildingNameLabel' | translate }}</label>
+                            <input type="text" class="form-control" ng-model="building.Name" name="name" required />
+                            <p ng-show="form.name.$invalid && form.name.$touched" class="help-block"> {{ 'ValidationTextFieldRequired' | translate }} </p>
+                        </md-input-container>
+                    </div>
+                    <div class="form-group">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label> {{ 'buildingDescriptionLabel' | translate }}</label>
+                            <textarea type="text" class="form-control" rows="2" style="text-decoration:none"
+                                      ng-model="building.ConfigurationParsed.description"></textarea>
+                        </md-input-container>
+                    </div>
+                    <div class="form-group">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label> {{ 'buildingCommentLabel' | translate }}</label>
+                            <textarea type="text" class="form-control" rows="2" style="text-decoration:none"
+                                      ng-model="building.ConfigurationParsed.comment"></textarea>
+                        </md-input-container>
+                    </div>
+                    <div class="form-group">
+                        <h3>{{ 'buildingGeoInfo' | translate }}</h3>
+                    </div>
+                    <a ng-click="geoInfoDetailShow = geoInfoDetailShow ? false : true;"><h5><i ng-hide="geoInfoDetailShow" class="fa fa-plus"></i><i ng-show="geoInfoDetailShow" class="fa fa-minus"></i> details </h5></a>
+                    <div class="form-group">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label> {{ 'buildingFullAddressLabel' | translate }}</label>
+                            <input type="text" class="form-control"
+                                   ng-model="building.ConfigurationParsed.fullAddress" required
+                                   ng-blur="findAddress()">
+                        </md-input-container>
+                    </div>
+                    <div ng-show="geoInfoDetailShow">
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label> {{ 'buildingStreetNumberPlaceholder' | translate }}</label>
+                                        <input type="text" class="form-control"
+                                               ng-model="building.ConfigurationParsed.streetNumber" disabled>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-md-9">
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label> {{ 'buildingStreetNamePlaceholder' | translate }}</label>
+                                        <input type="text" class="form-control"
+                                               ng-model="building.ConfigurationParsed.streetName" disabled>
+                                    </md-input-container>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label> {{ 'buildingPostcodePlaceholder' | translate }}</label>
+                                        <input type="text" class="form-control"
+                                               ng-model="building.ConfigurationParsed.postcode" disabled>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-md-9">
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label> {{ 'buildingCityPlaceholder' | translate }}</label>
+                                        <input type="text" class="form-control"
+                                               ng-model="building.ConfigurationParsed.city" disabled>
+                                    </md-input-container>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group ">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label> {{ 'buildingPostcodePlaceholder' | translate }}</label>
+                                <input type="text" class="form-control"
+                                       ng-model="building.ConfigurationParsed.country" disabled>
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h3>{{ 'buildingInvestInfo' | translate }}</h3>
+                    </div>
+                    <div class="form-group">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label> {{ 'buildingOwnerLabel' | translate }}</label>
+                            <input type="text" ng-model="building.ConfigurationParsed.owner.Name">
+                        </md-input-container>
+                    </div>
+                    <div class="form-group">
+                        <div class="row m-b-none">
+                            <div class="col-lg-6 col-xs-12">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label> {{ 'buildingLastPriceLabel' | translate }}</label>
+                                    <input type="number" ng-model="building.ConfigurationParsed.lastPrice">
+                                    <md-icon><i class="fa fa-euro fa-lg"></i></md-icon>
+                                </md-input-container>
+                            </div>
+                            <div class="col-lg-6 col-xs-12">
+                                <md-input-container>
+                                    <label>{{ 'buildingLastPriceDateLabel' | translate }}</label>
+                                    <md-datepicker ng-init="lastPriceDate = strToDate(building.ConfigurationParsed.lastPriceDate)"
+                                                   ng-model="lastPriceDate" ng-change="building.ConfigurationParsed.lastPriceDate = lastPriceDate" name="lastPriceDate" md-placeholder="{{ 'buildingLastPriceDateLabel' | translate }}"></md-datepicker>
+                                    <div ng-messages="myForm.lastPriceDate.$error">
+                                        <div ng-message="valid">{{ 'buildingLastPriceDateValidationText' | translate }}</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label> {{ 'buildingsurfaceTotalInM2Label' | translate }}</label>
+                            <input type="number" ng-model="building.ConfigurationParsed.surfaceTotalInM2">
+                            <md-icon><b>M²</b></md-icon>
+                        </md-input-container>
+                    </div>
+                    <div class="form-group">
+                        <h3>{{ 'buildingRentalInfo' | translate }}</h3>
+                    </div>
+                    <div class="form-group">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label> {{ 'buildingTenantLabel' | translate }}</label>
+                            <input type="text" ng-model="building.ConfigurationParsed.tenant.Name">
+                        </md-input-container>
+                    </div>
+                    <div class="form-group">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label> {{ 'buildingcurrentRentLabel' | translate }}</label>
+                            <input type="number" ng-model="building.ConfigurationParsed.currentRent">
+                            <md-icon><i class="fa fa-euro fa-lg"></i></md-icon>
+                        </md-input-container>
+                    </div>
+                    <div class="form-group">
+                        <div class="row m-b-none">
+                            <div class="col-lg-6 col-xs-12">
+                                <md-input-container>
+                                    <label>{{ 'buildingleaseStartedOnLabel' | translate }}</label>
+                                    <md-datepicker ng-init="leaseStartedOn = strToDate(building.ConfigurationParsed.leaseStartedOn)"
+                                                   ng-model="leaseStartedOn" ng-change="building.ConfigurationParsed.leaseStartedOn = leaseStartedOn" name="leaseStartedOn"></md-datepicker>
+                                    <div ng-messages="myForm.leaseStartedOn.$error">
+                                        <div ng-message="valid">{{ 'buildingLastPriceDateValidationText' | translate }}</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div class="col-lg-6 col-xs-12">
+                                <md-input-container>
+                                    <label>{{ 'buildingleaseFinishedOnLabel' | translate }}</label>
+                                    <md-datepicker ng-init="leaseFinishedOn = strToDate(building.ConfigurationParsed.leaseFinishedOn)"
+                                                   ng-model="leaseFinishedOn" ng-change="building.ConfigurationParsed.leaseFinishedOn = leaseFinishedOn" name="leaseFinishedOn"></md-datepicker>
+                                    <div ng-messages="myForm.leaseFinishedOn.$error">
+                                        <div ng-message="valid">{{ 'buildingLastPriceDateValidationText' | translate }}</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <button class="btn btn-primary form-control" ng-disabled="loading" ng-click="save(form.$valid)">
+                        <i class="glyphicon glyphicon-cloud-upload fa-lg"></i> {{ 'SaveButtonText' | translate }}
+                        <img ng-show="loading" width="20px" src="/Angular/img/squares.gif" /></button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6 col-md-offset-6 col-sm-0 map building-createorupdate" style="position:absolute;height:100%;">
+            <div id="map-canvas" class="map-canvas"></div>
+        </div>
+    </div>
+</div>

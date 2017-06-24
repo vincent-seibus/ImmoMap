@@ -1,0 +1,81 @@
+<script type="text/javascript">
+    if (document.getElementById("page-top") === undefined || document.getElementById("page-top") === null) {
+        document.location.href="/";
+    }
+</script>
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse" full-scroll>
+        <ul side-navigation class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                <div class="profile-element" uib-dropdown>                    
+                    <img ng-show="urlProfileImg(user)" alt="image" class="img-circle" ng-src="{{ getUrlProfileImg(user)}}"/> 
+                  <!-- <img ng-hide="space.Configuration.spaceLogoUrl" class="img-responsive" src="img/logo.png" width="180px"/>  --> 
+                    <img ng-show="space.Configuration.spaceLogoUrl" class="img-responsive" ng-src="{{space.Configuration.spaceLogoUrl}}" width="180px" />                    
+                    <div uib-dropdown>
+                        <a uib-dropdown-toggle href>
+                            <span class="clear">
+                                <span class="block m-t-xs">
+                                    <strong class="font-bold text-ellipsis">{{ user.UserName }}</strong>
+                                </span>
+                                <span class="text-muted text-xs block">{{ user.position }} <!--<b class="caret"></b>--> </span>
+                            </span>
+                        </a>
+                        <ul uib-dropdown-menu class="animated fadeInRight m-t-xs">
+                            <li><a ng-click="minimalizeMenuOnItemClicked()" ui-sref="profil.modify_password">{{ 'MenuProfilModifyPassword' | translate }}</a></li>
+                        </ul>
+                    </div>                                      
+                    <br />
+                    <!-- BOUTON NOUVEAU
+                    <div uib-dropdown>
+                        <a uib-dropdown-toggle href ng-show="isInRole(['Supervisor','CreateInterview'])" class="btn btn-primary form-control">
+                            <i class="fa fa-plus"></i> Nouveau
+                        </a>
+                        <ul uib-dropdown-menu class="animated fadeInRight m-t-xs">
+                            <li ui-sref-active="active" ng-show="isInRole(['Supervisor','CreateInterview'])">
+                                <a ng-click="minimalizeMenuOnItemClicked()" ui-sref="interview.interview_create"><i class="fa fa-plus"></i> <span class="nav-label">{{ 'MenuInterviewDrop' | translate }}</span> </a>
+                            </li>
+                            <li ui-sref-active="active" ng-show="isInRole(['Supervisor','CreateOrUpdateQuiz'])">
+                                <a ng-click="minimalizeMenuOnItemClicked()" ui-sref="quiz_creator.quiz_create_or_update"><i class="fa fa-plus"></i> <span class="nav-label">{{ 'MenuQuizCreate' | translate }}</span> </a>
+                            </li>
+                        </ul>
+                    </div> -->
+                </div>                
+            </li>
+            <li ng-class="{active: $state.includes('building.list')}" ng-show="isInRole(['Supervisor','ViewBuildings'])">
+                <a ng-click="minimalizeMenuOnItemClicked()" ui-sref="building.list"><i class="fa fa-map-marker"></i> <span class="nav-label">{{ 'MenuBuildingList' | translate }}</span> </a>
+            </li>
+            <li ng-class="{active: $state.includes('directory')}" ng-show="isInRole(['ViewUsersList','Supervisor'])">
+                <a href="index.html"><i class="fa fa-users"></i> <span class="nav-label">{{ 'MenuDirectoryDrop' | translate }}</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level" ng-class="{in: $state.includes('directory')}">
+                    <li ui-sref-active="active"><a ng-click="minimalizeMenuOnItemClicked()" ui-sref="directory.my_users">{{ 'MenuUsersDirectoryLink' | translate }} </a></li>
+                    <li ui-sref-active="active"  ng-show="isInRole(['Supervisor'])"><a ng-click="minimalizeMenuOnItemClicked()" ui-sref="directory.spaces">{{ 'MenuSpacesLink' | translate }} </a></li>
+                </ul>
+            </li>
+            <li ng-class="{active: $state.includes('configuration') || $state.includes('trash')}" ng-show="isInRole(['Supervisor','ViewConfiguration'])">
+                <a href="index.html"><i class="glyphicon glyphicon-cog"></i> <span class="nav-label">{{ 'MenuConfigDrop' | translate }}</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level" ng-class="{in: $state.includes('configuration') || $state.includes('trash') }">
+                    <li ui-sref-active="active"><a ng-click="minimalizeMenuOnItemClicked()" ui-sref="configuration.config_smtp">{{ 'MenuConfigLinkInbox' | translate }} </a></li>
+                    <li ui-sref-active="active"><a ng-click="minimalizeMenuOnItemClicked()" ui-sref="configuration.email_templates">{{ 'MenuConfigTemplateEmail' | translate }} </a></li>
+                    <li ng-show="isInRole(['Supervisor','viewSpaceConfiguration'])" ui-sref-active="active"><a ng-click="minimalizeMenuOnItemClicked()" ui-sref="configuration.space_configuration_all">{{ 'MenuSpaceConfig' | translate }} </a></li>
+                    <li ng-show="isInRole(['Supervisor','ViewTrash'])" ui-sref-active="active"><a ng-click="minimalizeMenuOnItemClicked()" ui-sref="trash.trash_list"><i class="fa fa-trash"></i>{{ 'MenuTrashList' | translate }} </a></li>
+                 </ul>
+            </li>          
+            <!--
+            <li class="landing_link">
+                <a href="/candidats"><i class="fa fa-star"></i> <span class="nav-label"> Ancien design </span> </a>
+            </li>-->
+            <li class="nav-footer logout_link">
+                <a ng-click="logout()">
+                    <i class="fa fa-power-off"></i> {{ 'TopNavBarLogoutLink' | translate }}
+                </a>
+            </li>
+            <li class="nav-footer" ng-show="space.size">
+                <div class="row m-t text-center" >                  
+                    <b><small><a class="btn btn-xs btn-outline btn-white no-borders inline">{{ space.size }}  
+                        <small ng-show="space.Configuration.sizeLimit">{{ 'MenuSizeUsed' | translate }} {{ space.Configuration.sizeLimit }} Go </small></a></small></b>   
+                </div>                
+            </li>
+        </ul>
+    </div>
+</nav>
+

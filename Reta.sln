@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reta", "Reta\Reta.csproj", "{47F367D6-4F8B-4538-BA90-86B841FB5AAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestReta", "UnitTestReta\UnitTestReta.csproj", "{71B49E3A-9648-4451-A414-5766A1C95E9A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47F367D6-4F8B-4538-BA90-86B841FB5AAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47F367D6-4F8B-4538-BA90-86B841FB5AAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47F367D6-4F8B-4538-BA90-86B841FB5AAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47F367D6-4F8B-4538-BA90-86B841FB5AAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71B49E3A-9648-4451-A414-5766A1C95E9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71B49E3A-9648-4451-A414-5766A1C95E9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71B49E3A-9648-4451-A414-5766A1C95E9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71B49E3A-9648-4451-A414-5766A1C95E9A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

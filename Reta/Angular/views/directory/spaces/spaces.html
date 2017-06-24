@@ -1,0 +1,36 @@
+﻿<div class="wrapper wrapper-content">
+
+    <div class="ibox-content m-b-sm border-bottom">
+        <div class="row">
+            <div class="col-md-3">
+                <label class="font-noraml">{{ 'spaceSearchByNameLabel' | translate }}</label>
+                <input class="form-control" ng-model="search.Name" placeholder="{{ 'spaceSearchByNamePlaceholder' | translate }}" />
+            </div>        
+        </div>        
+        <div class="row" style="margin-top:5px;">
+            <div class="col-md-3">
+                <button class="btn btn-primary inline" ng-click="create()"><i class="fa fa-plus"></i> {{ 'spaceCreateNewButton' | translate }}</button>
+            </div>                
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3" ng-repeat="space in spaces | filter:search">
+            <div class="ibox">
+                <div class="ibox-content product-box">
+                    <div class="aligncenter">
+                        <img ng-src="{{space.Configuration.spaceLogoUrl}}" width="180px" />
+                    </div>
+                    <div class="product-desc">                        
+                        <a ng-click="view(space)" class="product-name"> {{space.Name}} </a>
+                        <div class="small m-t-xs">
+                        </div>                        
+                        <div class="m-t text-righ">                            
+                            <a ng-click="edit(space)" class="btn btn-xs btn-outline btn-primary" title="{{ 'spaceEditButton' | translate }}"> <i class="fa fa-edit"></i> </a>
+                            <a ng-click="delete(space)" class="btn btn-xs btn-outline btn-primary" title="{{ 'spaceDeleteButton' | translate }}"> <i class="fa fa-remove"></i> </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

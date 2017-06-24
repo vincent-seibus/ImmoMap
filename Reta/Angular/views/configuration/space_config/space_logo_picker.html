@@ -1,0 +1,29 @@
+﻿<div class="row" id="space-logo-picker">
+    <div class="col-md-12">
+        <div style="position:relative;margin-top:5px" id="uploadFileDiv">
+            <a class='btn btn-primary btn-upload-attchments' href='javascript:;'>
+                <i class="glyphicon glyphicon-paperclip"></i> pièce jointe
+                <input type="file" name='upload' id='upload' style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' size="40" onchange='Upload()'>
+            </a>           
+        </div>
+        <div>
+            <img ng-src="{{spaceLogoUrl}}" width="180px" />
+        </div>
+    </div>
+    <!--
+    <div class="col-md-6">
+        <div class="m-b-md"><input type="file" id="fileInput" /></div>
+        <div class="cropArea">
+            <img-crop area-type="square" image="myImage" result-image="myCroppedImage"></img-crop>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <h4>Preview image</h4>
+        <div class="m-b-md"><img ng-src="{{myCroppedImage}}" /></div>
+    </div>-->
+</div>  
+<script>
+    function Upload() {
+        angular.element('#space-logo-picker').scope().doUpload();
+    }
+</script>
