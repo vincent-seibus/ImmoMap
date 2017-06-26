@@ -15,7 +15,6 @@ function MainCtrl($scope, $rootScope, $http, $localStorage, $uibModal, $state, $
         defaultHomePage: "building.list",
         minimalizeMenuOnItemClicked : false,
     };
-    $rootScope.globalConfiguration = $rootScope.globalConfiguration;
     $rootScope.notifTemplate = 'views/common/notif/notify-bottom-fullwidth.html';
     $scope.notifDuration = 4000;
 
